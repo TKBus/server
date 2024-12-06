@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-java@v4.5.0
         with:
           java-version: '21'
-          distribution: 'jdk'
+          distribution: 'corretto'
           
       # Runs a single command using the runners shell
       - name: Gradle gradlew setting
@@ -37,7 +37,7 @@ jobs:
         run: ./gradlew clean build
 
       - name: Docker Build
-        run: docker build -t backend .
+        run: docker build -t backend --build-arg JASYPT_KEY=${{ env.JASYPT_KEY }}  .
 
       # Runs a set of commands using the runners shell
       - name: Docker remove container with images
