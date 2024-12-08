@@ -42,8 +42,8 @@ jobs:
       - name: Docker Build
         run: |
           echo ${{ secrets.JASYPT_KEY }}
-          echo ${{ env.JASYPT_KEY }}
-          echo ${{ env.BACKEND_DOCKER_COMPOSE_PATH }}
+          echo ${{ vars.JASYPT_KEY }}
+          echo ${{ vars.BACKEND_DOCKER_COMPOSE_PATH }}
           echo ${{ secrets.BACKEND_DOCKER_COMPOSE_PATH }}
           docker build --platform linux/arm64/v8 -t backend --build-arg JASYPT_KEY=${{ secrets.JASYPT_KEY }}  .
       
@@ -66,4 +66,4 @@ jobs:
             docker rm -f tk-server || true
             echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
             docker pull ${{ secrets.DOCKER_USERNAME }}/tk-server
-            docker-compose -f ${{ env.BACKEND_DOCKER_COMPOSE_PATH }} up -d
+            docker-compose -f ${{ vars.BACKEND_DOCKER_COMPOSE_PATH }} up -d
