@@ -48,6 +48,7 @@ jobs:
           docker tag backend ${{ secrets.DOCKER_USERNAME }}/tk-server
           docker push ${{ secrets.DOCKER_USERNAME }}/tk-server
   deploy:
+    needs: build
     runs-on: ubuntu-22.04
     steps:
       - uses: appleboy/ssh-action@v1.2.0
@@ -56,5 +57,7 @@ jobs:
           username: haechang
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: whoami
+          script: |
+            ls -al
+            docker ps -a
 
