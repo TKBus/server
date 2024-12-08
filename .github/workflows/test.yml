@@ -26,7 +26,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            echo ${{ secrets.SUDO_PASSWORD }} | sudo -S su
             docker ps -a
 
             
