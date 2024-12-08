@@ -27,7 +27,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             echo ${{ secrets.SUDO_PASSWORD }} | sudo -S su
-            whoami
+            docker ps -a
 
             
             
