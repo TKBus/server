@@ -40,7 +40,12 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       
       - name: Docker Build
-        run: docker build --platform linux/arm64/v8 -t backend --build-arg JASYPT_KEY=${{ secrets.JASYPT_KEY }}  .
+        run: |
+          echo ${{ secrets.JASYPT_KEY }}
+          echo ${{ env.JASYPT_KEY }}
+          echo ${{ env.BACKEND_DOCKER_COMPOSE_PATH }}
+          echo ${{ secrets.BACKEND_DOCKER_COMPOSE_PATH }}
+          docker build --platform linux/arm64/v8 -t backend --build-arg JASYPT_KEY=${{ secrets.JASYPT_KEY }}  .
       
       # Runs a set of commands using the runners shell
       - name: Docker image push
