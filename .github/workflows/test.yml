@@ -25,6 +25,16 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+      # Gradle 캐시 설정
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
       - uses: actions/setup-java@v4.5.0
         with:
           java-version: '21'
@@ -33,7 +43,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Gradle gradlew setting
         run: chmod +x gradlew
-        
+
       - name: Application Server Build
         run: ./gradlew clean build
         
