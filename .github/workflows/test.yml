@@ -78,8 +78,9 @@ jobs:
             PR_URL="${{ github.event.pull_request.html_url }}"
             ASSIGNEES=$(echo "${{ github.event.pull_request.assignees }}" | jq -r 'map(.login) | join(", ")')
             BUILD_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-  
-            MESSAGE="배포가 성공했습니다! :white_check_mark:\nPR 제목:$PR_TITLE\nPR 링크:$PR_URL\nAssignee:$ASSIGNEE\n빌드 URL:$BUILD_URL"
+            PUSHER="${{ github.actor }}"
+            
+            MESSAGE="배포가 성공했습니다! :white_check_mark:\nPR 제목:$PR_TITLE\nPR 링크:$PR_URL\nAssignee:$ASSIGNEE\n빌드 URL:$BUILD_URL\nPusher: $PUSHER"
   
             curl -X POST -H "Content-Type: application/json" -d '{"content": "'"$MESSAGE"'"}' ${{ secrets.DISCORD_WEBHOOK_URL }}
   
@@ -90,7 +91,8 @@ jobs:
             PR_URL="${{ github.event.pull_request.html_url }}"
             ASSIGNEES=$(echo "${{ github.event.pull_request.assignees }}" | jq -r 'map(.login) | join(", ")')
             BUILD_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            PUSHER="${{ github.actor }}"
   
-            MESSAGE="배포가 실패했습니다! :x:\nPR 제목:$PR_TITLE\nPR 링크:$PR_URL\nAssignee:$ASSIGNEES\n빌드 URL:$BUILD_URL"
+            MESSAGE="배포가 실패했습니다! :x:\nPR 제목:$PR_TITLE\nPR 링크:$PR_URL\nAssignee:$ASSIGNEES\n빌드 URL:$BUILD_URL\nPusher: $PUSHER"
   
             curl -X POST -H "Content-Type: application/json" -d '{"content": "'"$MESSAGE"'"}' ${{ secrets.DISCORD_WEBHOOK_URL }}
