@@ -8,8 +8,10 @@ on:
   push:
     branches: [ "develop" ]
     paths: 
-      - "!(.github/**)"
-      - "!(gradle/wrapper/**)"
+      - "./src/**"
+      - "./Dockerfile"
+      - "./build.gradle"
+      - ".gitignore"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
