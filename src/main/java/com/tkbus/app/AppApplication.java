@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AppApplication {
 
 	public static void main(String[] args) {
-		// 개에발
+		// github action 변화 테스트
 		SpringApplication.run(AppApplication.class, args);
 	}
 
