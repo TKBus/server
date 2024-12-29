@@ -19,4 +19,6 @@ public class RouteDetail {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "route_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private Route route;
+
+	protected RouteDetail() {}
 }

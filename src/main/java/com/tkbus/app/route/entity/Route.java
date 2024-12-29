@@ -57,4 +57,6 @@ public class Route {
 
 	@OneToMany(mappedBy = "route")
 	private List<NodeRoute> nodeRoutes = new ArrayList<>();
+
+	protected Route() {}
 }

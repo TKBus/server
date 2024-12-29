@@ -1,15 +1,5 @@
 package com.tkbus.app.noderoute.entity;
 
-
-/*
-* create table node_route (
-	route_id INT NOT NULL, -- route 인조키
-    node_id INT NOT NULL, -- node 인조키
-    node_order INT NOT NULL -- nodeord, 정류소 순번
-);
-*
-* */
-
 import com.tkbus.app.node.entity.Node;
 import com.tkbus.app.route.entity.Route;
 
@@ -35,5 +25,7 @@ public class NodeRoute {
 	private Node node;
 
 	private Integer nodeOrder;
+
+	protected NodeRoute() {}
 
 }
